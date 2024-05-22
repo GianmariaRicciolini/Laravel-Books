@@ -1,42 +1,24 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h1>My Books</h1>
-    <a href="{{ route('books.create') }}" class="btn btn-primary mb-3">Add New Book</a>
-    @if($books->isEmpty())
-        <p>You have no books added yet.</p>
-    @else
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Year</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($books as $book)
-                    <tr>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->author }}</td>
-                        <td>{{ $book->genre }}</td>
-                        <td>{{ $book->publication_year }}</td>
-                        <td>
-                            <a href="{{ route('books.show', $book->id) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+<div class="mt-8">
+    <h2 class="text-xl text-gray-800 dark:text-gray-200">Your Books</h2>
+    <div class="row">
+        @foreach($books as $book)
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $book->title }}</h5>
+                    <p class="card-text">Author: {{ $book->author }}</p>
+                    <p class="card-text">Genre: {{ $book->genre }}</p>
+                    <p class="card-text">Published: {{ $book->publication_year }}</p>
+                    <a href="{{ route('books.show', $book->id) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
-@endsection

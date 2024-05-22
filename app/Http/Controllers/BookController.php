@@ -14,6 +14,12 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
+    public function create()
+    {
+        $genres = ['Adventure', 'Drama', 'Fantasy', 'Historical', 'Horror', 'Romantic', 'Sci-Fi', 'Other'];
+        return view('books.create', compact('genres'));
+    }
+    
     public function show(Book $book)
     {
         if (Auth::id() !== $book->user_id) {
