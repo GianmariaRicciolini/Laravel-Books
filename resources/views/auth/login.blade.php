@@ -44,4 +44,9 @@
             </x-primary-button>
         </div>
     </form>
+
+    <div class="text-center mt-3">
+        <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
+    </div>
+    
 </x-guest-layout>

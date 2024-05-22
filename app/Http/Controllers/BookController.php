@@ -29,7 +29,7 @@ class BookController extends Controller
             return redirect()->route('books.index')->with('error', 'Unauthorized access.');
         }
         
-        $genres = ['Fantasy', 'Horror', 'Sci-Fi', 'Romantic', 'Other'];
+        $genres = ['Adventure', 'Drama', 'Fantasy', 'Historical', 'Horror', 'Romantic', 'Sci-Fi', 'Other'];
         return view('books.edit', compact('book', 'genres'));
     }
 
