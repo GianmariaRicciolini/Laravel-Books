@@ -8,7 +8,7 @@
                     @if ($book->cover_image)
                         <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }} cover" class="img-fluid">
                     @endif
-                    <h5 class="card-title">{{ $book->title }}</h5>
+                    <h4 class="card-title">{{ $book->title }}</h4>
                     <p class="card-text">Author: {{ $book->author }}</p>
                     <p class="card-text">Genre: {{ $book->genre }}</p>
                     <p class="card-text">Published: {{ $book->publication_year }}</p>

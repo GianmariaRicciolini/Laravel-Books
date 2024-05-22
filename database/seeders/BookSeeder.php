@@ -14,7 +14,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        // Books for John Doe (user_id: 1)
+        // (user_id: 1)
         Book::create([
             'user_id' => 1,
             'title' => 'The Great Gatsby',
@@ -35,7 +35,7 @@ class BookSeeder extends Seeder
             'cover_image' => null,
         ]);
 
-        // Books for Jane Smith (user_id: 2)
+        // (user_id: 2)
         Book::create([
             'user_id' => 2,
             'title' => '1984',
@@ -56,14 +56,14 @@ class BookSeeder extends Seeder
             'cover_image' => null,
         ]);
 
-        // Books for Bob Johnson (user_id: 3)
+        // (user_id: 3)
         Book::create([
             'user_id' => 3,
             'title' => 'Moby Dick',
             'author' => 'Herman Melville',
             'description' => 'A novel about the voyage of the whaling ship Pequod',
             'genre' => 'Adventure',
-            'publication_year' => 1851,
+            'publication_year' => 1903,
             'cover_image' => null,
         ]);
 
@@ -73,7 +73,7 @@ class BookSeeder extends Seeder
             'author' => 'Leo Tolstoy',
             'description' => 'A novel that chronicles the history of the French invasion of Russia',
             'genre' => 'Historical',
-            'publication_year' => 1869,
+            'publication_year' => 1969,
             'cover_image' => null,
         ]);
     }

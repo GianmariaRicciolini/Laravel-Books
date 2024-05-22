@@ -25,7 +25,7 @@
         <div class="mb-3">
             <label for="publication_year" class="form-label">Publication Year</label>
             <select name="publication_year" class="form-select" required>
-                @for($year = date('Y'); $year >= 1900; $year--)
+                @for($year = date('Y'); $year >= 1901; $year--)
                     <option value="{{ $year }}">{{ $year }}</option>
                 @endfor
             </select>
