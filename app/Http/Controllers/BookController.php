@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -15,14 +14,31 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
-    public function create()
+    public function show(Book $book)
     {
-        $genres = ['Fantasy', 'Horror', 'Sci-Fi', 'Romantic', 'Other'];
-        return view('books.create', compact('genres'));
+        if (Auth::id() !== $book->user_id) {
+            return redirect()->route('books.index')->with('error', 'Unauthorized access.');
+        }
+        
+        return view('books.show', compact('book'));
     }
 
-    public function store(Request $request)
+    public function edit(Book $book)
     {
+        if (Auth::id() !== $book->user_id) {
+            return redirect()->route('books.index')->with('error', 'Unauthorized access.');
+        }
+        
+        $genres = ['Fantasy', 'Horror', 'Sci-Fi', 'Romantic', 'Other'];
+        return view('books.edit', compact('book', 'genres'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        if (Auth::id() !== $book->user_id) {
+            return redirect()->route('books.index')->with('error', 'Unauthorized access.');
+        }
+
         $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
@@ -32,13 +48,12 @@ class BookController extends Controller
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $coverImagePath = null;
+        $coverImagePath = $book->cover_image;
         if ($request->hasFile('cover_image')) {
             $coverImagePath = $request->file('cover_image')->store('cover_images', 'public');
         }
 
-        Book::create([
-            'user_id' => Auth::id(),
+        $book->update([
             'title' => $request->title,
             'author' => $request->author,
             'description' => $request->description,
@@ -47,13 +62,16 @@ class BookController extends Controller
             'cover_image' => $coverImagePath,
         ]);
 
-        return redirect()->route('books.index')->with('success', 'Book added successfully');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully');
     }
 
-    public function show(Book $book)
+    public function destroy(Book $book)
     {
-        $this->authorize('view', $book);
+        if (Auth::id() !== $book->user_id) {
+            return redirect()->route('books.index')->with('error', 'Unauthorized access.');
+        }
 
-        return view('books.show', compact('book'));
+        $book->delete();
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully');
     }
 }
