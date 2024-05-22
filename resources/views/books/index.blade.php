@@ -1,8 +1,8 @@
 <div class="mt-8">
-    <h2 class="text-xl text-gray-800 dark:text-gray-200">Your Books</h2>
+    <h1 class="py-4 text-center" style="font-size: 4rem">Your Books</h1>
     <div class="row">
         @foreach($books as $book)
-        <div class="col-md-4">
+        <div class="col-md-4 pt-3">
             <div class="card mb-3">
                 <div class="card-body">
                     @if ($book->cover_image)

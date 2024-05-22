@@ -1,5 +1,5 @@
-<div class="container">
-    <h1>Add a New Book</h1>
+<div class="container py-5">
+    <h1 style="font-size: 3rem">Add a New Book</h1>
     <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
