@@ -23,7 +23,6 @@ class CreateBooksTable extends Migration
             $table->year('publication_year');
             $table->string('cover_image')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
