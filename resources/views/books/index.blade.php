@@ -5,6 +5,9 @@
         <div class="col-md-4">
             <div class="card mb-3">
                 <div class="card-body">
+                    @if ($book->cover_image)
+                        <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }} cover" class="img-fluid">
+                    @endif
                     <h5 class="card-title">{{ $book->title }}</h5>
                     <p class="card-text">Author: {{ $book->author }}</p>
                     <p class="card-text">Genre: {{ $book->genre }}</p>

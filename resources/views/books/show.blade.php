@@ -15,7 +15,7 @@
                     <p>Published: {{ $book->publication_year }}</p>
                     <p>Description: {{ $book->description }}</p>
                     @if ($book->cover_image)
-                        <p><img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }} cover" class="img-fluid"></p>
+                        <p>Current cover: <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }} cover" class="img-fluid"></p>
                     @endif
                     <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
@@ -23,7 +23,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <a href="{{ route('books.index') }}" class="btn btn-secondary">Back to list</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-secondary">Back to list</a>
                 </div>
             </div>
         </div>
